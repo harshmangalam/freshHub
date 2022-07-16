@@ -8,3 +8,12 @@ export async function fetchUserInfo(username: string) {
   });
   return [userInfo.status, await userInfo.json()];
 }
+
+export async function fetchRepositories(username: string) {
+  const response = await fetch(`${GITHUB_API}/users/${username}/repos`, {
+    headers: {
+      Authorization: `Bearer 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`,
+    },
+  });
+  return [response.status, await response.json()];
+}

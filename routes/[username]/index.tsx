@@ -1,9 +1,8 @@
 /** @jsx h */
-/** @jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
 import { PageProps, Handlers } from "$fresh/server.ts";
-import { fetchUserInfo } from "../utils/github.ts";
+import { fetchUserInfo } from "../../utils/github.ts";
 import { Head } from "$fresh/runtime.ts";
 
 export const handler: Handlers = {
@@ -63,7 +62,9 @@ export default function Greet({ data, params }: PageProps) {
         </div>
       </nav>
 
-      <main className={tw` max-w-5xl grid place-items-center mx-auto px-4 py-8`}>
+      <main
+        className={tw` max-w-5xl grid place-items-center mx-auto px-4 py-8`}
+      >
         <div className={tw``}>
           <div className={tw``}>
             <img
