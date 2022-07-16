@@ -1,21 +1,21 @@
 /** @jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
-import Counter from "../islands/Counter.tsx";
 
 export default function Home() {
   return (
-    <div class={tw`p-4 mx-auto max-w-screen-md`}>
-      <img
-        src="/logo.svg"
-        height="100px"
-        alt="the fresh logo: a sliced lemon dripping with juice"
-      />
-      <p class={tw`my-6`}>
-        Welcome to `fresh`. Try update this message in the ./routes/index.tsx
-        file, and refresh.
-      </p>
-      <Counter start={3} />
+    <div className={tw`h-screen bg-gray-900 text-gray-100`}>
+      <nav className={tw`flex justify-between items-center h-16 bg-gray-800 px-4`}>
+        <div className={tw`flex items-center space-x-3`}>
+          <img
+            src="favicon.ico"
+            alt="FreshLogo"
+            className={tw`w-10 h-10 object-fit`}
+          />
+          <h1 className={tw`font-bold text-2xl`}>FreshHub</h1>
+        </div>
+      </nav>
+      
     </div>
   );
 }
