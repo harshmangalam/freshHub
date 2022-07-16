@@ -1,9 +1,10 @@
 const GITHUB_API = "https://api.github.com";
 
+const GITHUB_TOKEN = Deno.env.get("GITHUB_TOKEN");
 export async function fetchUserInfo(username: string) {
   const response = await fetch(`${GITHUB_API}/users/${username}`, {
     headers: {
-      Authorization: `Bearer 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`,
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
     },
   });
 
@@ -13,7 +14,7 @@ export async function fetchUserInfo(username: string) {
 export async function fetchRepositories(username: string) {
   const response = await fetch(`${GITHUB_API}/users/${username}/repos`, {
     headers: {
-      Authorization: `Bearer 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`,
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
     },
   });
   return [response.status, await response.json()];
