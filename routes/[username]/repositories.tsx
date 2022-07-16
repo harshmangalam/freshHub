@@ -4,6 +4,7 @@ import { tw } from "@twind";
 import { PageProps, Handlers } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { fetchRepositories } from "../../utils/github.ts";
+import Repository from "../../components/Repsitory.tsx";
 
 export const handler: Handlers = {
   async GET(req, ctx) {
@@ -40,9 +41,23 @@ export const handler: Handlers = {
   },
 };
 
-export default function Repositories({data}:PageProps) {
-    const repos = data?.repos
-  return <div>
-    {JSON.stringify(repos)}
-  </div>
+export default function Repositories({ data, params }: PageProps) {
+  const repos = data?.repos;
+  const username = params.username;
+  return (
+    <div className={tw`min-h-screen bg-gray-900 text-gray-100`}>
+      <Head>
+        <title>{username} | Repository</title>
+      </Head>
+
+      <main className={tw`max-w-5xl mx-auto py-8 px-4 `}>
+        <h1 className={tw`text-2xl font-bold text-gray-100`}>Repositories</h1>
+        <div className={tw`grid grid-cols-1 md:grid-cols-2 gap-4 mt-4`}>
+          {repos.map((repo) => (
+            <Repository {...repo} />
+          ))}
+        </div>
+      </main>
+    </div>
+  );
 }

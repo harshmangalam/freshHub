@@ -60,6 +60,7 @@ export default function Home({ data }: PageProps) {
           <div className={tw`flex flex-col space-y-2`}>
             <label htmlFor="username">Github Username</label>
             <input
+            autoFocus
               type="text"
               name="username"
               id="username"
@@ -73,7 +74,7 @@ export default function Home({ data }: PageProps) {
             )}
           </div>
           <button
-            className={tw`bg-gray-700 text-lg font-bold w-full mt-4 py-2 px-4 rounded-md`}
+            className={tw`focus:outline-none hover:bg-gray-600 bg-gray-700 text-lg font-bold w-full mt-4 py-2 px-4 rounded-md`}
           >
             Continue
           </button>
