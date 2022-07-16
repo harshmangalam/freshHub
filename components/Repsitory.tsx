@@ -3,6 +3,7 @@ import { h } from "preact";
 import { tw } from "@twind";
 
 interface RepositoryProps {
+  id: number;
   name: string;
   description: string;
   language: string;
@@ -21,7 +22,10 @@ export default function Repository({
   return (
     <article className={tw`border border-gray-700  rounded-md p-4`}>
       <div className={tw`flex items-center justify-between`}>
-        <a href="/" className={tw`font-bold block flex-1 text-blue-400 hover:underline`}>
+        <a
+          href="/"
+          className={tw`font-bold block flex-1 text-blue-400 hover:underline`}
+        >
           {name}
         </a>
 

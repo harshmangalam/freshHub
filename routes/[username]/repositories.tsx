@@ -6,6 +6,15 @@ import { Head } from "$fresh/runtime.ts";
 import { fetchRepositories } from "../../utils/github.ts";
 import Repository from "../../components/Repsitory.tsx";
 
+interface Repository {
+  id: number;
+  name: string;
+  description: string;
+  language: string;
+  private: boolean;
+  stargazers_count: number;
+  forks_count: number;
+}
 export const handler: Handlers = {
   async GET(req, ctx) {
     try {
@@ -41,7 +50,10 @@ export const handler: Handlers = {
   },
 };
 
-export default function Repositories({ data, params }: PageProps) {
+export default function Repositories({
+  data,
+  params,
+}: PageProps<{ repos: Repository[] }>) {
   const repos = data?.repos;
   const username = params.username;
   return (
@@ -54,7 +66,16 @@ export default function Repositories({ data, params }: PageProps) {
         <h1 className={tw`text-2xl font-bold text-gray-100`}>Repositories</h1>
         <div className={tw`grid grid-cols-1 md:grid-cols-2 gap-4 mt-4`}>
           {repos.map((repo) => (
-            <Repository {...repo} />
+            <Repository
+              id={repo.id}
+              name={repo.name}
+              description={repo.description}
+              isPrivate={repo.private}
+              forks_count={repo.forks_count}
+              language={repo.language}
+              stargazers_count={repo.stargazers_count}
+              key={repo.id}
+            />
           ))}
         </div>
       </main>
