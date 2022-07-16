@@ -87,10 +87,16 @@ export default function Greet({ data, params }: PageProps) {
           </div>
 
           <div className={tw`mt-4 flex flex-col space-y-2`}>
-            <InfoItem text={user.company} icon={<Company />} />
-            <InfoItem text={user.location} icon={<Location />} />
-            <InfoItem text={user.blog} icon={<Link />} />
-            <InfoItem text={`@${user.twitter_username}`} icon={<Twitter />} />
+            {user.company && (
+              <InfoItem text={user.company} icon={<Company />} />
+            )}
+            {user.location && (
+              <InfoItem text={user.location} icon={<Location />} />
+            )}
+            {user.blog && <InfoItem text={user.blog} icon={<Link />} />}
+            {user.twitter_username && (
+              <InfoItem text={`@${user.twitter_username}`} icon={<Twitter />} />
+            )}
           </div>
         </div>
 
