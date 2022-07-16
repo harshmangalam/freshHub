@@ -1,10 +1,39 @@
 /** @jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
-import { PageProps } from "$fresh/server.ts";
+import { PageProps, Handlers } from "$fresh/server.ts";
+import { fetchUserInfo } from "../utils/github.ts";
+import { Head } from "$fresh/runtime.ts";
+
+export const handler: Handlers = {
+  async POST(req, ctx) {
+    try {
+      const formData = await req.formData();
+      const username = formData.get("username");
+      if (!username || username.toString().trim().length === 0) {
+        return ctx.render({ error: "Username should not be empty" });
+      }
+      const [status, data] = await fetchUserInfo(String(username));
+      if (status === 404) {
+        return ctx.render({ error: "User not found" });
+      }
+     return new Response(undefined,{
+      headers:{
+        location:`/${username}`
+      },
+      status:404
+     })
+    } catch (error) {
+      return ctx.render({ error: error.message });
+    }
+  },
+};
 export default function Home({ data }: PageProps) {
   return (
     <div className={tw`h-screen bg-gray-900 text-gray-100`}>
+      <Head>
+        <title>Home</title>
+      </Head>
       <nav
         className={tw`flex justify-between items-center h-16 bg-gray-800 px-4`}
       >
@@ -35,7 +64,7 @@ export default function Home({ data }: PageProps) {
               placeholder={"harshmangalam"}
             />
             {data?.error && (
-              <p className={tw`text-sm text-red-400`}>Invalid username</p>
+              <p className={tw`text-sm text-red-400`}>{data.error}</p>
             )}
           </div>
           <button
