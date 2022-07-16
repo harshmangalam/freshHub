@@ -1,4 +1,4 @@
-# fresh project
+# FreshHub 
 
 ### Usage
 
@@ -8,4 +8,5 @@ Start the project:
 deno task start
 ```
 
-This will watch the project directory and restart as necessary.
+Demo
+[Live On Deno Deploy](https://harshmangalam-fresh-ub.deno.dev/)
