@@ -45,7 +45,7 @@ export default function Greet({ data, params }: PageProps) {
   const username = params.username;
   return (
     <Layout title={error ? "Error" : username}>
-      <div className={tw``}>
+      <div className={tw`max-w-3xl mx-auto`}>
         <div className={tw``}>
           <img
             src={user.avatar_url}
@@ -60,7 +60,7 @@ export default function Greet({ data, params }: PageProps) {
           <p className={tw`mt-4 text-gray-300 max-w-md`}>{user.bio}</p>
 
           <div className={tw`mt-4 flex items-center space-x-2`}>
-            <div className={tw`flex items-center space-x-1`}>
+            <a href={`/${username}/followers`} className={tw`flex items-center space-x-1 hover:underline`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={tw`h-4 w-4`}
@@ -79,7 +79,7 @@ export default function Greet({ data, params }: PageProps) {
               <p className={tw`text-gray-300 text-sm`}>
                 {user.followers > 1 ? "followers" : "follower"}
               </p>
-            </div>
+            </a>
             <span>&bull;</span>
             <div className={tw`flex items-center space-x-1`}>
               <p className={tw`font-bold`}>{user.following}</p>

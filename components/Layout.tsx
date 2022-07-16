@@ -11,7 +11,7 @@ export default function Layout({
   title: string;
 }) {
   return (
-    <div className={tw`h-screen bg-gray-900 text-gray-100`}>
+    <div className={tw`min-h-screen bg-gray-900 text-gray-100`}>
       {/* navbar */}
       <Head>
         <title>{title}</title>
@@ -19,14 +19,14 @@ export default function Layout({
       <nav
         className={tw`flex justify-between items-center h-16 bg-gray-800 px-4`}
       >
-        <div className={tw`flex items-center space-x-3`}>
+        <a href="/" className={tw`flex items-center space-x-3`}>
           <img
-            src="favicon.ico"
+            src="/favicon.ico"
             alt="FreshLogo"
             className={tw`w-10 h-10 object-fit`}
           />
           <h1 className={tw`font-bold text-2xl`}>FreshHub</h1>
-        </div>
+        </a>
       </nav>
 
       <main className={tw`container mx-auto px-4 py-8`}>{children}</main>
