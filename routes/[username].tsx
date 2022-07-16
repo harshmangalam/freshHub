@@ -45,7 +45,7 @@ export default function Greet({ data, params }: PageProps) {
   const error = data?.error;
   const username = params.username;
   return (
-    <div className={tw`h-screen bg-gray-900 text-gray-100`}>
+    <div className={tw`min-h-screen bg-gray-900 text-gray-100`}>
       <Head>
         <title>{error ? "Error" : username}</title>
       </Head>
@@ -63,21 +63,20 @@ export default function Greet({ data, params }: PageProps) {
         </div>
       </nav>
 
-      <main className={tw` max-w-6xl mx-auto px-4 py-8`}>
-        <div className={tw`grid grid-cols-12 gap-4`}>
-          {/* user info  */}
-          <div className={tw`col-span-3`}>
+      <main className={tw` max-w-5xl grid place-items-center mx-auto px-4 py-8`}>
+        <div className={tw``}>
+          <div className={tw``}>
             <img
               src={user.avatar_url}
               alt={user.name}
-              className={tw`w-70 h-70 aspect-square rounded-full`}
+              className={tw`w-64 h-64 aspect-square rounded-full`}
             />
 
             <div className={tw`mt-4`}>
               <h2 className={tw`text-2xl font-bold`}>{user.name}</h2>
               <h2 className={tw`text-xl text-gray-400`}>{user.login}</h2>
             </div>
-            <p className={tw`mt-4 text-gray-300`}>{user.bio}</p>
+            <p className={tw`mt-4 text-gray-300 max-w-md`}>{user.bio}</p>
 
             <div className={tw`mt-4 flex items-center space-x-2`}>
               <div className={tw`flex items-center space-x-1`}>
@@ -192,10 +191,44 @@ export default function Greet({ data, params }: PageProps) {
             </div>
           </div>
 
-          {/* repo info  */}
-          <div className={tw`col-span-9`}></div>
+          <div className={tw`mt-8`}>
+            <div className={tw`flex items-center gap-4 flex-wrap`}>
+              {links.map((link) => (
+                <a
+                  key={link.name}
+                  href={`/${username}/${link.href}`}
+                  className={tw`bg-gray-700 rounded-full px-4 py-2`}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </main>
     </div>
   );
 }
+
+const links = [
+  {
+    name: "Repositories",
+    href: "repositories",
+  },
+  {
+    name: "Subscriptions",
+    href: "subscriptions",
+  },
+  {
+    name: "Organizations",
+    href: "organizations",
+  },
+  {
+    name: "Events",
+    href: "events",
+  },
+  {
+    name: "Received Events",
+    href: "received_events",
+  },
+];
