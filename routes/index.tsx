@@ -8,12 +8,18 @@ import Layout from "../components/Layout.tsx";
 export const handler: Handlers = {
   async POST(req, ctx) {
     try {
+      // get form data from request 
       const formData = await req.formData();
+      // extract username from form data 
       const username = formData.get("username");
+      // add validation 
       if (!username || username.toString().trim().length === 0) {
         return ctx.render({ error: "Username should not be empty" });
       }
+      
+      // check if username exists
       const [status] = await fetchUserInfo(String(username));
+      // handle different error status code 
       if (status === 404) {
         return ctx.render({ error: "User not found" });
       }
@@ -22,6 +28,8 @@ export const handler: Handlers = {
           error: "Exceeded github api limit try after an hour",
         });
       }
+
+      // redirect to user profile screen 
       return new Response(undefined, {
         headers: {
           location: `/${username}`,
