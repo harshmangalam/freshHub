@@ -6,7 +6,7 @@ import * as $0 from "./routes/[username]/events.tsx";
 import * as $1 from "./routes/[username]/followers.tsx";
 import * as $2 from "./routes/[username]/following.tsx";
 import * as $3 from "./routes/[username]/index.tsx";
-import * as $4 from "./routes/[username]/organisations.tsx";
+import * as $4 from "./routes/[username]/organizations.tsx";
 import * as $5 from "./routes/[username]/received_events.tsx";
 import * as $6 from "./routes/[username]/repositories.tsx";
 import * as $7 from "./routes/[username]/subscriptions.tsx";
@@ -19,7 +19,7 @@ const manifest = {
     "./routes/[username]/followers.tsx": $1,
     "./routes/[username]/following.tsx": $2,
     "./routes/[username]/index.tsx": $3,
-    "./routes/[username]/organisations.tsx": $4,
+    "./routes/[username]/organizations.tsx": $4,
     "./routes/[username]/received_events.tsx": $5,
     "./routes/[username]/repositories.tsx": $6,
     "./routes/[username]/subscriptions.tsx": $7,
