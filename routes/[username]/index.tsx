@@ -2,7 +2,7 @@
 import { h } from "preact";
 import { tw } from "@twind";
 import { PageProps, Handlers } from "$fresh/server.ts";
-import { fetchUserInfo } from "../../utils/github.ts";
+import { fetchUserInfo } from "../../services/github.ts";
 import Layout from "../../components/Layout.tsx";
 import InfoItem from "../../components/InfoItem.tsx";
 import LinkButton from "../../components/LinkButton.tsx";
@@ -78,12 +78,15 @@ export default function Greet({ data, params }: PageProps) {
               </p>
             </a>
             <span>&bull;</span>
-            <div className={tw`flex items-center space-x-1`}>
+            <a
+              href={`/${username}/following`}
+              className={tw`flex items-center space-x-1 hover:underline`}
+            >
               <p className={tw`font-bold`}>{user.following}</p>
               <p className={tw`text-gray-300 text-sm`}>
                 {user.following > 1 ? "followings" : "following"}
               </p>
-            </div>
+            </a>
           </div>
 
           <div className={tw`mt-4 flex flex-col space-y-2`}>

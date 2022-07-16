@@ -2,7 +2,7 @@
 import { h } from "preact";
 import { tw } from "@twind";
 import { PageProps, Handlers } from "$fresh/server.ts";
-import { fetchFollowers } from "../../utils/github.ts";
+import { fetchFollowers } from "../../services/github.ts";
 import Layout from "../../components/Layout.tsx";
 import User from "../../components/User.tsx";
 import PageHeading from "../../components/PageHeading.tsx";

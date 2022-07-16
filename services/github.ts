@@ -1,6 +1,7 @@
 const GITHUB_API = "https://api.github.com";
 
 const GITHUB_TOKEN = Deno.env.get("GITHUB_TOKEN");
+
 export async function fetchUserInfo(username: string) {
   const response = await fetch(`${GITHUB_API}/users/${username}`);
   return [response.status, await response.json()];
@@ -17,4 +18,12 @@ export async function fetchFollowers(username: string) {
   const response = await fetch(`${GITHUB_API}/users/${username}/followers`);
   return [response.status, await response.json()];
 }
+
+
+
+export async function fetchFollowing(username: string) {
+  const response = await fetch(`${GITHUB_API}/users/${username}/following`);
+  return [response.status, await response.json()];
+}
+
 

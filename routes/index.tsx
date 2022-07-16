@@ -2,24 +2,24 @@
 import { h } from "preact";
 import { tw } from "@twind";
 import { PageProps, Handlers } from "$fresh/server.ts";
-import { fetchUserInfo } from "../utils/github.ts";
+import { fetchUserInfo } from "../services/github.ts";
 import Layout from "../components/Layout.tsx";
 
 export const handler: Handlers = {
   async POST(req, ctx) {
     try {
-      // get form data from request 
+      // get form data from request
       const formData = await req.formData();
-      // extract username from form data 
+      // extract username from form data
       const username = formData.get("username");
-      // add validation 
+      // add validation
       if (!username || username.toString().trim().length === 0) {
         return ctx.render({ error: "Username should not be empty" });
       }
-      
+
       // check if username exists
       const [status] = await fetchUserInfo(String(username));
-      // handle different error status code 
+      // handle different error status code
       if (status === 404) {
         return ctx.render({ error: "User not found" });
       }
@@ -29,7 +29,7 @@ export const handler: Handlers = {
         });
       }
 
-      // redirect to user profile screen 
+      // redirect to user profile screen
       return new Response(undefined, {
         headers: {
           location: `/${username}`,
