@@ -17,6 +17,9 @@ export const handler: Handlers = {
       if (status === 404) {
         return ctx.render({ error: "User not found" });
       }
+      if (status === 403) {
+        return ctx.render({ error: "Exceeded github api limit try after an hour" });
+      }
      return new Response(undefined,{
       headers:{
         location:`/${username}`
