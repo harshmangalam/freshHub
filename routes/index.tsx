@@ -13,19 +13,21 @@ export const handler: Handlers = {
       if (!username || username.toString().trim().length === 0) {
         return ctx.render({ error: "Username should not be empty" });
       }
-      const [status, data] = await fetchUserInfo(String(username));
+      const [status] = await fetchUserInfo(String(username));
       if (status === 404) {
         return ctx.render({ error: "User not found" });
       }
       if (status === 403) {
-        return ctx.render({ error: "Exceeded github api limit try after an hour" });
+        return ctx.render({
+          error: "Exceeded github api limit try after an hour",
+        });
       }
-     return new Response(undefined,{
-      headers:{
-        location:`/${username}`
-      },
-      status:302
-     })
+      return new Response(undefined, {
+        headers: {
+          location: `/${username}`,
+        },
+        status: 302,
+      });
     } catch (error) {
       return ctx.render({ error: error.message });
     }
