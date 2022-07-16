@@ -21,7 +21,7 @@ export const handler: Handlers = {
       headers:{
         location:`/${username}`
       },
-      status:404
+      status:302
      })
     } catch (error) {
       return ctx.render({ error: error.message });
