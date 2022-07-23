@@ -11,6 +11,7 @@ import Company from "../../icons/Company.tsx";
 import Link from "../../icons/Link.tsx";
 import Twitter from "../../icons/Twitter.tsx";
 import Users from "../../icons/Users.tsx";
+import { Status } from "https://deno.land/std@0.146.0/http/http_status.ts";
 
 export const handler: Handlers = {
   async GET(req, ctx) {
@@ -18,7 +19,7 @@ export const handler: Handlers = {
       const username = ctx.params.username;
       if (!username) {
         return new Response(undefined, {
-          status: 302,
+          status: Status.Found,
           headers: {
             location: "/",
           },
@@ -26,9 +27,9 @@ export const handler: Handlers = {
       }
       const [status, user] = await fetchUserInfo(username);
 
-      if (status !== 200) {
+      if (status !== Status.OK) {
         return new Response(undefined, {
-          status: 302,
+          status: Status.Found,
           headers: {
             location: "/",
           },
@@ -38,7 +39,7 @@ export const handler: Handlers = {
     } catch (error) {
       console.log(error);
       return new Response(undefined, {
-        status: 302,
+        status: Status.Found,
         headers: {
           location: "/",
         },
