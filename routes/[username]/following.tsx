@@ -6,6 +6,7 @@ import { fetchFollowing } from "../../services/github.ts";
 import Layout from "../../components/Layout.tsx";
 import User from "../../components/User.tsx";
 import PageHeading from "../../components/PageHeading.tsx";
+import { Status } from "https://deno.land/std@0.146.0/http/http_status.ts";
 
 interface User {
   id: number;
@@ -19,7 +20,7 @@ export const handler: Handlers = {
       const username = ctx.params.username;
       if (!username) {
         return new Response(undefined, {
-          status: 302,
+          status: Status.Found,
           headers: {
             location: "/",
           },
@@ -27,9 +28,9 @@ export const handler: Handlers = {
       }
       const [status, users] = await fetchFollowing(username);
 
-      if (status !== 200) {
+      if (status !== Status.OK) {
         return new Response(undefined, {
-          status: 302,
+          status: Status.Found,
           headers: {
             location: "/",
           },
@@ -39,7 +40,7 @@ export const handler: Handlers = {
     } catch (error) {
       console.log(error);
       return new Response(undefined, {
-        status: 302,
+        status: Status.Found,
         headers: {
           location: "/",
         },
