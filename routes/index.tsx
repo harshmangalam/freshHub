@@ -5,7 +5,7 @@ import { PageProps, Handlers } from "$fresh/server.ts";
 import { fetchUserInfo } from "../services/github.ts";
 import Layout from "../components/Layout.tsx";
 import { Status } from "https://deno.land/std@0.146.0/http/http_status.ts";
-import { Status } from "https://deno.land/std@0.146.0/http/http_status.ts";
+
 
 export const handler: Handlers = {
   async POST(req, ctx) {
