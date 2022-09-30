@@ -8,5 +8,5 @@ Start the project:
 deno task start
 ```
 
-Live
+View Live
 [Deno Deploy](https://freshhub.deno.dev/)
