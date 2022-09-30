@@ -1,0 +1,1 @@
+Welcome to FreshHub contributing guide
