@@ -21,6 +21,7 @@ export const handler: Handlers = {
 
       // check if username exists
       const [status] = await fetchUserInfo(String(username));
+
       // handle different error status code
       if (status === Status.NotFound) {
         return ctx.render({ error: "User not found" });
