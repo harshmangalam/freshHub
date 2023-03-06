@@ -10,13 +10,15 @@ export async function fetchRepositories(username: string) {
   return [response.status, await response.json()];
 }
 
-
+export async function fetchOrganizationMembers(username: string) {
+  const response = await fetch(`${GITHUB_API}/orgs/${username}/members`);
+  return [response.status, await response.json()];
+}
 
 export async function fetchFollowers(username: string) {
   const response = await fetch(`${GITHUB_API}/users/${username}/followers`);
   return [response.status, await response.json()];
 }
-
 
 
 export async function fetchFollowing(username: string) {

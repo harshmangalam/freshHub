@@ -111,6 +111,7 @@ export default function Greet({ data, params }: PageProps) {
                 key={link.name}
                 href={`/${username}/${link.href}`}
                 name={link.name}
+                hidden={link.href == "members" && user.type.toLowerCase() == "user" ? true : false}
               />
             ))}
           </div>
@@ -132,6 +133,10 @@ const links = [
   {
     name: "Organizations",
     href: "organizations",
+  },
+  {
+    name: "Members",
+    href: "members",
   },
   {
     name: "Events",
